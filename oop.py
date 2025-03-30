@@ -15,4 +15,4 @@ class motor:
         if self._start_button == 1:
             self._start_button = 0
         self._stop_button = True
-        print("Motor is OFF
+        print("Motor is OFF")
