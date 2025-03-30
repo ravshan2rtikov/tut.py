@@ -16,3 +16,26 @@ class motor:
             self._start_button = 0
         self._stop_button = True
         print("Motor is OFF")
+
+    def change_speed(self, value):
+        self._change_speed = value
+        print("Speed Changed")
+
+    # 0 is clockwise rotation, 1 is anti clockwise rotation
+    def change_direction(self, value):
+        self._change_dir = value
+        print("Rotate diraction changed")
+
+
+fan = motor(0, 0, 0, 0)
+print("Start button is: ", fan._start_button)
+fan.turn_on()
+print("Start button is: ", fan._start_button)
+fan.turn_off()
+print("Stopbutton is: ", fan._stop_button)
+
+fan.change_speed(50)
+print(fan._change_speed)
+
+fan.change_direction(1)
+print(fan._change_dir)
