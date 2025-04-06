@@ -1,5 +1,6 @@
 # import package
 import turtle
+import time
 
 # basic setup
 win = turtle.Screen()
@@ -45,5 +46,19 @@ green_light.color("grey")
 green_light.penup()
 green_light.goto(0, -40)
 
-# basic setup: loop
+while True:
+    yellow_light.color("grey")
+    red_light.color("red")
+    time.sleep(4)
+
+    red_light.color("grey")
+    green_light.color("green")
+    time.sleep(3)
+
+    green_light.color("grey")
+    yellow_light.color("yellow")
+    time.sleep(3)
+
+
+# basic setup, the loop
 win.mainloop()
