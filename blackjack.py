@@ -178,3 +178,25 @@ def get_hand_value(cards):
             value += 10
 
     return value
+
+
+def display_cards(cards):
+    rows = ["", "", "", "", ""]
+
+    for i, cards in enumerate(cars):
+        rows[0] += "___ "  # top of the card
+        if card == BACKSIDE:
+            # back of the card
+            rows[1] += "|## | "
+            rows[2] += "|###| "
+            rows[3] += "| ##| "
+        else:
+            # front of the card
+            rank, suit = card  # card is tuple ds
+            rows[1] += "|{} | ".format(rank.ljust(2))
+            rows[2] += "| {} | ".format(suit)
+            rows[3] += "| {}| ".format(rank.rjust(2, "_"))
+
+    # print each row on the screen
+    for row in rows:
+        print(row)
