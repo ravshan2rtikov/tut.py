@@ -1,4 +1,5 @@
-import random, sys
+import random
+import sys
 
 # constans
 HEARTS = chr(9828)
@@ -83,7 +84,7 @@ def main():
                 # dealer hits
                 print("Dealer hits...")
                 dealer_hand.append(deck.pop())
-                dealer_hands(player_hand, dealer_hand, False)
+                display_hands(player_hand, dealer_hand, False)
 
                 if get_hand_value(dealer_hand) > 21:
                     # dealer busted
@@ -98,7 +99,7 @@ def main():
         dealer_value = get_hand_value(dealer_hand)
 
         # weather player won, lost or tied:
-        if dealer_hand > 21:
+        if dealer_value > 21:
             print("Dealer busts! You win ${}!".format(bet))
             money += bet
         elif (player_value > 21) or (player_value < dealer_value):
@@ -143,7 +144,7 @@ def get_deck():
         return deck
 
 
-def display_hands(player_hand, delaer_hand, show_dealer_hand):
+def display_hands(player_hand, dealer_hand, show_dealer_hand):
     # show player and dealer hands, hide dealer's 1st card if show_dealer_hand is False
     print()
     if show_dealer_hand:
@@ -183,7 +184,7 @@ def get_hand_value(cards):
 def display_cards(cards):
     rows = ["", "", "", "", ""]
 
-    for i, cards in enumerate(cars):
+    for i, card in enumerate(cards):
         rows[0] += "___ "  # top of the card
         if card == BACKSIDE:
             # back of the card
@@ -200,3 +201,23 @@ def display_cards(cards):
     # print each row on the screen
     for row in rows:
         print(row)
+
+
+def get_move(player_hand, money):
+    while True:
+        moves = ["(H)it, (S)tand"]
+
+        if len(player_hand) == 2 and money > 0:
+            moves.append("(D)ouble down")
+
+        # get players move
+        move_prompt = ", ".join(moves) + "> "
+        move = input(move_prompt).upper()
+        if move in ("H", "S"):
+            return move
+        if move == "D" and "(D)ouble down" in moves:
+            return move
+
+
+if __name__ == "__main__":
+    main()
