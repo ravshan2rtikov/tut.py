@@ -129,3 +129,31 @@ def get_bet(max_bet):
         bet = int(bet)
         if 1 <= bet <= max_bet:
             return bet
+
+
+def get_deck():
+    # return a list of tuples for 52 cards (rank, suit)
+    deck = []
+    for suit in (HEARTS, DIAMONDS, SPADES, CLUBS):
+        for rank in range(2, 11):
+            deck.append((str(rank), suit))
+        for rank in ("J", "Q", "K", "A"):
+            deck.append((rank, suit))
+        random.shuffle(deck)
+        return deck
+
+
+def display_hands(player_hand, delaer_hand, show_dealer_hand):
+    # show player and dealer hands, hide dealer's 1st card if show_dealer_hand is False
+    print()
+    if show_dealer_hand:
+        print("DEALER:", get_hand_value(dealer_hand))
+        display_cards(dealer_hand)
+    else:
+        print("DEALER: ???")
+        # hide dealer's 1st card
+        display_cards([BACKSIDE] + dealer_hand[1:])
+
+    # show player's cards
+    print("PLAYER:", get_hand_value(player_hand))
+    display_cards(player_hand)
