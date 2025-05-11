@@ -157,3 +157,24 @@ def display_hands(player_hand, delaer_hand, show_dealer_hand):
     # show player's cards
     print("PLAYER:", get_hand_value(player_hand))
     display_cards(player_hand)
+
+
+def get_hand_value(cards):
+    value = 0
+    number_of_aces = 0
+
+    for card in cards:
+        rank = card[0]
+        if rank == "A":
+            number_of_aces += 1
+        elif rank in ("K", "Q", "J"):
+            value += 10
+        else:
+            value += int(rank)
+
+    value += number_of_aces
+    for i in range(number_of_aces):
+        if value + 10 <= 21:
+            value += 10
+
+    return value
